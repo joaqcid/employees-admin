@@ -5,4 +5,8 @@ export interface EmployeesPage {
    employees: Employee[];
    formStatus: string;
 
+   totalEmployees: number;
+   totalDrivers: number;
+   totalRosarioEmployees: number;
+
 }
