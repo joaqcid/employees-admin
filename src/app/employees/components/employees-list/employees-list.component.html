@@ -1,0 +1,14 @@
+<div *ngIf="loading$ | async">
+  Loading...
+ </div>
+ <div *ngIf="noResults$ | async">
+  No results
+ </div>
+ <div class="card bg-light mb-3" style="max-width: 18rem;" *ngFor="let employee of employees$ | async">
+  <div class="card-header">{{employee.location}}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{employee.name}}</h5>
+    <p class="card-text">{{employee.hasDriverLicense ? 'Can drive': ''}}</p>
+    <button (click)="delete(employee)" class="btn btn-danger">Delete</button>
+  </div>
+ </div>
