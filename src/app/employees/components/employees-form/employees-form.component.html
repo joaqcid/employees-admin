@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="form-group">
-    <select class="custom-select" formControlName="location" [class.is-invalid]="isInvalid('location')" x>
+    <select class="custom-select" formControlName="location" [class.is-invalid]="isInvalid('location')">
       <option value="" selected>Choose location</option>
       <option *ngFor="let loc of locations" [ngValue]="loc">{{loc}}</option>
     </select>
