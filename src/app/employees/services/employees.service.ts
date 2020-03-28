@@ -1,7 +1,7 @@
 import { EmployeesPageStore } from './employees-page.store';
 import { EmployeeFirestore } from './employee.firestore';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { Employee } from '../models/employee';
 import { tap, map } from 'rxjs/operators';
 
@@ -29,6 +29,23 @@ export class EmployeesService {
 
   get employees$(): Observable<Employee[]> {
     return this.store.state$.pipe(map(state => state.loading ? [] : state.employees))
+  }
+
+  get filter$() {
+    return this.store.state$.pipe(map(state => state.filter));
+  }
+
+  get fileredEmployees$(): Observable<Employee[]> {
+    return combineLatest(
+      this.employees$,
+      this.filter$,
+    ).pipe(
+      map(([employees, filter]) => {
+        return employees.filter(employee => {
+          return employee.name === filter.name
+        })
+      })
+    )
   }
 
   get loading$(): Observable<boolean> {
