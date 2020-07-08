@@ -140,5 +140,8 @@
       }
     }
   },
-  "defaultProject": "employees-admin"
+  "defaultProject": "employees-admin",
+  "cli": {
+    "analytics": false
+  }
 }
